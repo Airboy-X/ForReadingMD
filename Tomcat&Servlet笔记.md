@@ -78,24 +78,29 @@
 		2. 强制关闭：
 			* 点击启动窗口的×
 	6. 配置:
-		* 部署项目的方式：
-			1. 直接将项目放到webapps目录下即可。
+		* 部署项目的3种方式：
+		        （运维精通部署，开发会用第1种来debug就行了）		
+			1. （最简单）直接将项目放到webapps目录下即可。
 				* /hello：项目的访问路径-->虚拟目录
 				* 简化部署：将项目打成一个war包，再将war包放置到webapps目录下。
 					* war包会自动解压缩
+			<Context docBase="E:\����-Դͷ\Java�̳�\JavaWeb\2-8Tomcat\2-8Tomcat\��3�� tomcat_������Ŀ" />
+			2. （热部署，最推荐）在conf\Catalina\localhost创建任意名称的xml文件（如bbb.xml）。在文件中编写
+				<Context docBase="D:\hello" />
+				* 虚拟目录：xml文件的名称（\bbb）
+				* 热部署：停止hello的服务，只需要修改该bbb.xml文件名bbb.xml_xxx就行了，不用停Tomcat服务器。
 
-			2. 配置conf/server.xml文件
+			3. （强烈抵制！）配置conf/server.xml文件
+			   （server.xml是这个tomcat容器的配置文件，如果每个项目都在这里配，容易把这个核心文件弄坏弄乱）	
 				在<Host>标签体中配置
 				<Context docBase="D:\hello" path="/hehe" />
 				* docBase:项目存放的路径
 				* path：虚拟目录
 
-			3. 在conf\Catalina\localhost创建任意名称的xml文件。在文件中编写
-				<Context docBase="D:\hello" />
-				* 虚拟目录：xml文件的名称
+			
 
-		* 静态项目和动态项目：
-			* 目录结构
+		* 静态项目和动态项目目录：
+			* 目录结构的区别
 				* java动态项目的目录结构：
 					-- 项目的根目录
 						-- WEB-INF目录：
